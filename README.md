@@ -1,1 +1,0 @@
-# tehnical-report-writing-guide
