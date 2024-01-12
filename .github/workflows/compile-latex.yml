@@ -17,24 +17,30 @@ jobs:
         with:
           root_file: main.tex
 
-      - name: Upload .pdf file
+      - name: Upload PDF as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: main
-          # This is the output path where Pandoc will write the compiled
-          # PDF. Note, this should be the same directory as the input
-          # main.md
+          name: thesis.pdf
           path: main.pdf
-
-      - name: Check pdf file
-        run: |
-          file main.pdf | grep -q ' PDF '
-    
-      - name: Upload file to repository
-        run: |
-          git config --global user.name "your_username"
-          git config --global user.email "your_email"
-          git add main.pdf
-          git commit -m "commit message"
-          git push
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v0.1-${{ github.run_number }}
+          release_name: Automated build v0.1-${{ github.run_number }}
+          draft: false
+          prerelease: false
+        
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: main.pdf
+          asset_name: thesis.pdf
+          asset_content_type: application/pdf
