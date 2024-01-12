@@ -16,7 +16,6 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: technical-report-writing-guide.tex
-          #https://github.com/jakobhaervig/tehnical-report-writing-guide/releases/latest/download/technical-report-writing-guide.pdf
       - name: Upload PDF as artifact
         uses: actions/upload-artifact@v4
         with:
