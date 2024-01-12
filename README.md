@@ -1,0 +1,1 @@
+Download the [latest version](https://github.com/jakobhaervig/tehnical-report-writing-guide/releases/latest/download/technical-report-writing-guide.pdf).
