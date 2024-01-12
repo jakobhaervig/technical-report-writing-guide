@@ -26,8 +26,15 @@ jobs:
           # main.md
           path: main.pdf
 
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: main
-          path: main.pdf
+      - name: Check pdf file
+        run: |
+          file main.pdf | grep -q ' PDF '
+    
+      - name: Upload file to repository
+        run: |
+          git config --global user.name "your_username"
+          git config --global user.email "your_email"
+          git add main.pdf
+          git commit -m "commit message"
+          git push
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
