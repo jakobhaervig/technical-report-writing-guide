@@ -66,8 +66,37 @@ Kommentar om, at ligninger ikke skal skrives i tekst!
 \section{Figurer}
 Lav dem selv, husk at bruge vektorgrafik. Figurtekst under figur.
 Hvordan laver du den fede figur? 
-\section{Tabeller}
-Tabeltekst over figur.
+\section{Tables}
+The setup for regular tables are as follows:
+\begin{itemize}
+	\item The table caption (descriptive table text) is put above the table. 
+	\item No vertical lines are used in regular tables. 
+	\item The row with the column descriptions are enclosed by horizontal lines and written in bold.
+	\item The remaining rows are not separated by any lines before a final horizontal line marks the end of the table.
+	\item In the first column, the text is put to the left while it is typically centered in the remaining columns.
+	\item Table foodnotes are written below the table. 
+\end{itemize}
+An exemplary example can be seen in \mbox{Table \ref{tab:setup}}.
+\begin{table}[pos=H]
+    \centering
+        \caption{Overview of the Key Performance Indicators (KPI).}
+    \label{tab:setup}
+    \begin{tabular}{lccc}
+    \hline 
+    \textbf{KPI} & \textbf{Symbol }& \textbf{Value} &\textbf{Unit} \\\hline
+    Inlet velocity & \textit{v}$_\text{in}$ & 5.2 & m/s\\
+    Pressure drop & \textit{P} & 200$^a$ & Pa\\
+    Mass flow of air & $\dot{m}_\text{air}$ & 10 &  kg/s \\
+    System efficiency$^b$  &  $\eta$ & 60 & \% \\
+    \hline
+    \end{tabular}
+    \captionsetup{labelformat=empty}
+    \caption*{$^a$ Calculated using the Ergun equation. \\
+    $^b$ The system efficiency includes heat integration.}
+\end{table}
+The code snippet used to generate \mbox{Table \ref{tab:setup}} is given in \mbox{Figure}
+
+
 \section{Referencer til ligninger, tabeller, figurer, afsnit, etc.}
 \section{Referencer til andres arbejde}
 \section{Nomenklatur}
